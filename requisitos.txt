@@ -1,0 +1,9 @@
+A lista de coisas pro aplicativo:
+•⁠  ⁠Campo pra colocar o aniversário e enviar uma mensagem de aniversário automaticamente
+•⁠  ⁠campo com o dia da oferta, pra gente enviar um aviso pra lembrar de ofertar uns dias antes
+•⁠  ⁠se possível, um campo onde a gente dê um check que a pessoa ofertou aquele mês, pra enviar uma mensagem de agradecimento
+•⁠  ⁠um campo pra colocar como foi feita a oferta (mas esse não é obrigatório e é só pra nosso controle mesmo)
+
+Acho que é isso
+Se vc tiver mais alguma ideia, me fala
+Obrigada!!!!!

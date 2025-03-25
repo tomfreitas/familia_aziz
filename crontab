@@ -1,0 +1,2 @@
+* * * * * /usr/local/bin/php /Applications/XAMPP/xamppfiles/htdocs/laravel/familia_aziz/artisan schedule:run >> /dev/null 2>&1
+* * * * * echo "Cron executado em $(date)" >> //Applications/XAMPP/xamppfiles/htdocs/laravel/familia_aziz/log.txt
