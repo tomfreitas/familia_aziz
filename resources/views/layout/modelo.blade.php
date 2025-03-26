@@ -136,11 +136,11 @@
                                             <span class="material-symbols-outlined">notifications</span> Notificações
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('file-manager.index')}}">
                                             <span class="material-symbols-outlined">files</span> Arquivos
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 @endif
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2" href="{{ route('login.destroy') }}">
