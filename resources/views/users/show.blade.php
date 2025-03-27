@@ -13,7 +13,13 @@
     <div class="w-100 d-block bg-light px-4 py-5 rounded-4 tela">
         <div class="d-flex justify-content-between mb-5">
             <h4 class="mb-0 text-primary">Mantenedor</h4>
-            <a class="btn btn-sm btn-outline-verde px-4 rounded-pill" href="{{ route('users.index') }}">Voltar</a>
+            <div>
+                @if (auth()->user()->type_user == 1)
+                    <a class="btn btn-sm btn-outline-vermelho px-4 rounded-pill me-3" href="{{ route('users.edit', ['user' => $usuario->id]) }}">Editar</a>
+                @endif
+                <a class="btn btn-sm btn-outline-verde px-4 rounded-pill" href="{{ route('users.index') }}">Voltar</a>
+            </div>
+
         </div>
         @if ( session()->has('message'))
             <div class="alert alert-warning bg-success text-white alert-dismissible fade show" role="alert">

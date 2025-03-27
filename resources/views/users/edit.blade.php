@@ -422,7 +422,7 @@
 
 
 
-                            @if ( $user == 1 || $usuario->type_user == 3 )
+                            @if ( $user == 1 && $usuario->type_user == 1 )
                                 <div class="col-12">
                                     <hr class="opacity-25 border-success">
                                 </div>
@@ -455,7 +455,7 @@
                 </form>
 
 
-                <div class="col-12" id="caixa_observacao" style="display: none">
+                <div class="col-12" id="caixa_observacao">
                     <div class="row">
                         <div class="col-12 my-4">
                             <hr class="opacity-25 border-success">
