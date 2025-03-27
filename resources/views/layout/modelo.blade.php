@@ -171,7 +171,7 @@
     <script src="{{ asset('/js/imask.js') }}" type="text/javascript"></script>
     <script>
         // Passa o nome da rota atual para o JavaScript
-        const currentRoute = "{{ Route::currentRouteName() }}";
+        let currentRoute = "{{ Route::currentRouteName() }}";
     </script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 

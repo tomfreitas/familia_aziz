@@ -197,7 +197,7 @@
 
 		h1 {
 			font-weight: 200;
-			font-size: 44px;
+			font-size: 34px;
 		}
 
 		h2 {
@@ -389,7 +389,7 @@
 
 </head>
 
-<body bgcolor="#f2f2f2">
+<body bgcolor="#f9f9f9">
 
 	<!-- HEADER -->
 	<table class="head-wrap">
@@ -401,7 +401,7 @@
 					<table>
 						<tr>
 							<td>
-								<img src="img/header.jpg" width="100%" border="0" />
+								<img src="https://controle.familiaaziz.org/img/header.jpg" width="100%" border="0" />
 							</td>
 						</tr>
 					</table>
@@ -423,10 +423,14 @@
 					<table>
 						<tr>
 							<td>
+                                <p>&nbsp;</p>
 								<h1>Olá, {{ $user->nome }}!</h1>
-                                <p>Este é um lembrete de que sua contribuição está agendada para amanhã ({{ now()->addDay()->format('d/m/Y') }}).</p>
-                                <p>Forma de pagamento escolhido: {{ $user->forma_pgto }}</p>
-                                <p>Obrigado por apoiar a Família Aziz!</p>
+                                <p style="color:#444;">Este é um lembrete de que sua contribuição está agendada para amanhã ({{ now()->addDay()->format('d/m/Y') }}).</p>
+                                {{-- <p style="color:#444;">Forma de pagamento escolhido: {{ $user->forma_pgto }}</p> --}}
+                                <p style="color:#444;">Obrigado por apoiar a Família Aziz!</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
 							</td>
 						</tr>
 					</table>
@@ -437,7 +441,7 @@
 		</tr>
 	</table><!-- /BODY -->
 
-	<!-- FOOTER -->
+	<!-- FOOTER
 	<table class="footer-wrap">
 		<tr>
 			<td></td>
@@ -454,6 +458,6 @@
 			</td>
 			<td></td>
 		</tr>
-	</table>
+	</table>-->
 </body>
 </html>

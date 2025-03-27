@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const route = window.currentRoute;
+
+    const route = currentRoute;
 
     // Carregar scripts específicos com base na rota
     switch (route) {

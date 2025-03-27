@@ -27,17 +27,13 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 Route::get('/test-email', function () {
-    $details = [
-        'title' => 'Teste de e-mail',
-        'body' => 'Este é um e-mail de teste.'
-    ];
 
     $teste_m = Mail::raw('Este é um teste.', function ($message) {
         $message->to('wellington@shalomdigital.com.br')
                 ->subject('Teste de E-mail');
     });
     if($teste_m) {
-        return 'E-mail enviado!';
+        return 'E-mails enviados!';
     }else {
         return 'Erro no E-mail enviado';
     }
