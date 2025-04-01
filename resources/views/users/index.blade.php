@@ -75,9 +75,9 @@
         <div class="row">
             <div class="col-12 px-4" id="usersTable">
                 <div class="row row-cols-12 bg-primary text-white">
-                    <div class="col-md-5 col-12 fw-bold py-2">Nome</div>
+                    <div class="col-md-4 col-12 fw-bold py-2">Nome</div>
                     <div class="col-md-2 col-12 fw-bold py-2">Celular</div>
-                    <div class="col-md-2 col-12 fw-bold py-2">E-mail</div>
+                    <div class="col-md-3 col-12 fw-bold py-2">E-mail</div>
                     <div class="col-md-2 col-12 fw-bold py-2">Categoria</div>
                     <div class="col-md-1 col-12 fw-bold py-2 text-center">Ações</div>
                 </div>
@@ -90,14 +90,14 @@
                         $data_f = date('d/m/Y', strtotime($date));
                     ?>
                     <div class="row row-cols-12 mb-md-0 mb-4 bg-linha" id="tbody">
-                        <div class="col-md-5 py-1 col-12 border-bottom d-flex align-items-center text-uppercase small fw-bold">
+                        <div class="col-md-4 py-1 col-12 border-bottom d-flex align-items-center text-uppercase small fw-bold">
                             <a class="link-verde" href="{{ route('users.show', $usuario->id) }}">{{ $usuario->nome }}</a>
                             @if($usuario->showErrorIcon)
                                 &nbsp;<span class="material-symbols-outlined text-vermelho symbol-filled h6 m-0">error</span>
                             @endif
                         </div>
                         <div class="col-md-2 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary" target="_blank" href="https://wa.me/{{ $telefone }}">{{ $usuario->celular }}</a></div>
-                        <div class="col-md-2 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary" href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></div>
+                        <div class="col-md-3 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary" href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></div>
                         @foreach ($grupos as $cat => $val)
                             @if ($usuario->categoria == $cat)
                                 <div class="col-md-2 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary">{{ $val }}</a></div>
