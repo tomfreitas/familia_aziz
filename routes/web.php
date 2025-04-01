@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/test-email', function () {
 
     $teste_m = Mail::raw('Este é um teste.', function ($message) {
-        $message->to('wellington@shalomdigital.com.br')
+        $message->to('contato@familiaaziz.org')
                 ->subject('Teste de E-mail');
     });
     if($teste_m) {

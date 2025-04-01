@@ -34,3 +34,6 @@ Cron executado em Fri Mar 14 08:00:01 -03 2025
 Cron executado em Wed Mar 19 08:00:01 -03 2025
 Cron executado em Sat Mar 22 08:02:24 -03 2025
 Cron executado em Wed Mar 26 08:00:00 -03 2025
+Cron executado em Fri Mar 28 08:00:06 -03 2025
+Cron executado em Sun Mar 30 08:00:00 -03 2025
+Cron executado em Tue Apr  1 08:00:00 -03 2025

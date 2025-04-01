@@ -425,10 +425,11 @@
 							<td>
                                 <p>&nbsp;</p>
 								<h1>Olá, {{ $user->nome }}!</h1>
-                                <p style="color:#444;">Este é um lembrete de que sua contribuição está agendada para amanhã ({{ now()->addDay()->format('d/m/Y') }}).</p>
-                                {{-- <p style="color:#444;">Forma de pagamento escolhido: {{ $user->forma_pgto }}</p> --}}
-                                <p style="color:#444;">Obrigado por apoiar a Família Aziz!</p>
+                                <p style="color:#444;">Você está recebendo esse e-mail de lembrete pois está chegando o dia de sua oferta para a Família Aziz.</p>
+                                <p style="color:#444;">Obrigada por nos apoiar!</p>
+                                <p style="color:#444;">Deus te abençoe!</p>
                                 <p>&nbsp;</p>
+                                <p style="font-size:12px; font-style: italic; color: #444;">(Obs.: enviamos esse e-mail de acordo com sua prévia autorização).</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;</p>
 							</td>
