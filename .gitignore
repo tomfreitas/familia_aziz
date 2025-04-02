@@ -11,6 +11,7 @@
 .env.local
 .phpunit.result.cache
 .DS_Store
+DS_Store
 Homestead.json
 Homestead.yaml
 auth.json
