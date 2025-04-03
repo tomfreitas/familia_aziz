@@ -44,7 +44,7 @@
 
                             <div class="col-md-3 mb-3">
                                 <label for="data" class="form-label fw-bold">Aniversário</label>
-                                <input type="text" name="data" class="form-control" id="data" placeholder="00/00/0000" value="" required>
+                                <input type="text" name="data" class="form-control" id="data" placeholder="00/00/0000" value="">
                             </div>
 
                             <div class="col-md-3 mb-3">
