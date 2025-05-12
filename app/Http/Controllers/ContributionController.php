@@ -10,40 +10,41 @@ use Illuminate\Pagination\Paginator;
 class ContributionController extends Controller
 {
     public function index(Request $request)
-{
-    // Captura os filtros do request
-    $formaPagamento = $request->input('forma_pagamento');
-    $mes = $request->input('mes'); // Sem valor padrão
-    $ano = $request->input('ano'); // Sem valor padrão
+    {
+        $titulo = "Contribuições";
+        // Captura os filtros do request
+        $formaPagamento = $request->input('forma_pagamento');
+        $mes = $request->input('mes'); // Sem valor padrão
+        $ano = $request->input('ano'); // Sem valor padrão
 
-    // Base query para buscar as contribuições
-    $query = Contribution::query();
+        // Base query para buscar as contribuições
+        $query = Contribution::query();
 
-    // Aplica o filtro de forma de pagamento, se selecionado
-    if ($formaPagamento) {
-        $query->where('forma_pgto', $formaPagamento);
+        // Aplica o filtro de forma de pagamento, se selecionado
+        if ($formaPagamento) {
+            $query->where('forma_pgto', $formaPagamento);
+        }
+
+        // Aplica os filtros de mês e ano somente se eles forem fornecidos
+        if ($mes && $ano) {
+            $query->whereMonth('data_pgto', $mes)
+                ->whereYear('data_pgto', $ano);
+        } elseif ($ano) {
+            // Apenas o ano foi selecionado
+            $query->whereYear('data_pgto', $ano);
+        }
+
+        // Calcula o total contribuído somente se os filtros de mês ou ano forem aplicados
+        $totalContribuido = null;
+        if ($mes || $ano || $formaPagamento) {
+            $totalContribuido = $query->sum('valor');
+        }
+
+        // Obtem as contribuições filtradas
+        $contributions = $query->OrderBy('id', 'desc')->paginate(10);
+
+        return view('contributions.index', compact('contributions', 'totalContribuido', 'formaPagamento', 'mes', 'ano'))->with('titulo', $titulo);
     }
-
-    // Aplica os filtros de mês e ano somente se eles forem fornecidos
-    if ($mes && $ano) {
-        $query->whereMonth('data_pgto', $mes)
-              ->whereYear('data_pgto', $ano);
-    } elseif ($ano) {
-        // Apenas o ano foi selecionado
-        $query->whereYear('data_pgto', $ano);
-    }
-
-    // Calcula o total contribuído somente se os filtros de mês ou ano forem aplicados
-    $totalContribuido = null;
-    if ($mes || $ano || $formaPagamento) {
-        $totalContribuido = $query->sum('valor');
-    }
-
-    // Obtem as contribuições filtradas
-    $contributions = $query->OrderBy('id', 'desc')->paginate(6);
-
-    return view('contributions.index', compact('contributions', 'totalContribuido', 'formaPagamento', 'mes', 'ano'));
-}
 
 
 
@@ -154,5 +155,15 @@ class ContributionController extends Controller
             'user' => $user->nome,
             'contributed_this_month' => $hasContributed,
         ]);
+    }
+
+    public function destroy($id)
+    {
+        // Busca a observação e suas respostas
+        $cont = Contribution::findOrFail($id);
+
+        $cont->delete();
+
+        return redirect()->back()->with('message', 'Contribuição excluída com sucesso.');
     }
 }

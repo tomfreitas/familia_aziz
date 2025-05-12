@@ -38,3 +38,12 @@ Cron executado em Fri Mar 28 08:00:06 -03 2025
 Cron executado em Sun Mar 30 08:00:00 -03 2025
 Cron executado em Tue Apr  1 08:00:00 -03 2025
 Cron executado em Thu Apr  3 08:00:00 -03 2025
+Cron executado em Sat Apr  5 08:00:00 -03 2025
+Cron executado em Mon Apr  7 08:00:00 -03 2025
+Cron executado em Tue Apr  8 08:00:00 -03 2025
+Cron executado em Thu Apr 10 08:00:00 -03 2025
+Cron executado em Fri Apr 18 08:00:00 -03 2025
+Cron executado em Sat Apr 26 08:00:00 -03 2025
+Cron executado em Fri May  2 08:00:01 -03 2025
+Cron executado em Sat May  3 08:00:01 -03 2025
+Cron executado em Thu May  8 08:00:00 -03 2025

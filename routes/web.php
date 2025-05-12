@@ -106,6 +106,7 @@ Route::prefix('contributions')->group(function () {
     Route::get('/{id}/edit', [ContributionController::class, 'edit'])->name('contributions.edit')->middleware(['auth']);
     Route::put('/{id}', [ContributionController::class, 'update'])->name('contributions.update')->middleware(['auth']);
     Route::get('/verify/{user}', [ContributionController::class, 'verify'])->middleware(['auth']); // Verificar contribuições de um usuário
+    Route::delete('/{id}', [ContributionController::class, 'destroy'])->name('contributions.destroy')->middleware(['auth']);
 });
 
 Route::prefix('notifications')->group(function () {

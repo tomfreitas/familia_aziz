@@ -128,11 +128,22 @@
                             <div class="col-md-2 col-12 border-bottom d-flex align-items-center small">{{ $contribution->forma_pgto }}</div>
                             <div class="col-md-2 col-12 border-bottom d-flex align-items-center justify-content-center small">{{ $data_f }}</div>
                             <div class="col-md-1 col-12 border-bottom d-flex align-items-center justify-content-center small">R$ {{ $valor }}</div>
-                            <div class="col-md-1 col-12 border-bottom d-flex align-items-center justify-content-center small">
+                            <div class="col-md-1 col-12 border-bottom d-flex align-items-center justify-content-center gap-2 small">
                                 <a href="{{ route('contributions.edit', $contribution->id)}}">
                                     <span class="material-symbols-outlined text-cinza symbol-filled">manage_accounts</span>
                                 </a>
+                                <form action="{{ route('contributions.destroy', [$contribution->id, $contribution->user_id]) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="material-symbols-outlined text-vermelho border-0 bg-transparent" onclick="return confirm('Tem certeza que deseja remover esta contribuição?')">
+                                        delete
+                                    </button>
+                                </form>
+                                {{-- <a href="{{ route('contributions.destroy', [$contribution->id]) }}" class="material-symbols-outlined text-vermelho">
+                                    delete
+                                </a> --}}
                             </div>
+
                         </div>
                     @endforeach
                 </div>
