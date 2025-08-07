@@ -14,6 +14,7 @@ use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\EsqueciSenhaController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 
 /*
@@ -119,3 +120,21 @@ Route::prefix('notifications')->group(function () {
 
 //Notificacão e-mail 180
 Route::post('/usuarios/{id}/enviar-comunicacao', [UserController::class, 'enviarComunicacao'])->name('users.enviarComunicacao');
+
+
+Route::get('/cron-log', function () {
+    $logPath = storage_path('logs/laravel.log');
+
+    if (!File::exists($logPath)) {
+        return 'Arquivo de log não encontrado.';
+    }
+
+    // Pega as últimas 100 linhas do log
+    $lines = explode("\n", File::get($logPath));
+    $filtered = array_filter($lines, fn($line) => str_contains($line, 'Tarefa "minha-tarefa" executada'));
+
+    // Pega só os últimos 10 registros (opcional)
+    $lastEntries = array_slice($filtered, -10);
+
+    return '<pre>' . implode("\n", $lastEntries) . '</pre>';
+});
