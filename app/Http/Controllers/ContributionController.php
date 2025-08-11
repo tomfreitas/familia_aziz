@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailAgradecimento;
 use Illuminate\Http\Request;
 use App\Models\Contribution;
 use App\Models\User;
@@ -108,6 +110,8 @@ class ContributionController extends Controller
 
         $usuario->comunicacao_enviada = false;
         $usuario->save();
+
+        Mail::to($usuario->email)->send(new MailAgradecimento($usuario));
 
         // Redirecionar para a página do formulário com mensagem de sucesso
         return redirect()->route('contributions.create', $usuario->id)
