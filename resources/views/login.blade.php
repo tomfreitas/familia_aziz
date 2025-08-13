@@ -75,8 +75,8 @@
     </main>
 </div>
 
-{{-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/scripts.js') }}" type="text/javascript"></script> --}}
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/scripts.js') }}" type="text/javascript"></script>
 </body>
 
 </html>
