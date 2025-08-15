@@ -419,18 +419,11 @@
 			<td></td>
 			<td class="container">
 
-				<div class="content">
+				<div class="">
 					<table>
 						<tr>
 							<td>
-                                <p>&nbsp;</p>
-								<h1>Feliz Aniversário, {{ $user->nome }}!</h1>
-                                <p style="color:#444;">Esperamos que você tenha um dia maravilhoso!</p>
-                                <p style="color:#444;">Deus te abençoe!<br />Família Aziz</p>
-                                <p>&nbsp;</p>
-                                <p style="font-size:11px; font-style: italic; color: #444;">(Obs.: enviamos esse e-mail de acordo com sua prévia autorização).</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
+                                <img src="https://controle.familiaaziz.org/img/img-birthday.jpg" width="700" alt="Feliz Aniversário" title="Feliz Aniversário" />
 							</td>
 						</tr>
 					</table>
