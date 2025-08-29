@@ -401,7 +401,7 @@
 					<table>
 						<tr>
 							<td>
-								<img src="https://controle.familiaaziz.org/img/header.jpg" width="100%" border="0" />
+								<img src="https://controle.missiowave.com.br/img/header.jpg" width="100%" border="0" />
 							</td>
 						</tr>
 					</table>
@@ -423,7 +423,7 @@
 					<table>
 						<tr>
 							<td>
-                                <img src="https://controle.familiaaziz.org/img/img-birthday.jpg" width="700" alt="Feliz Aniversário" title="Feliz Aniversário" />
+                                <img src="https://controle.missiowave.com.br/img/img-birthday.jpg" width="700" alt="Feliz Aniversário" title="Feliz Aniversário" />
 							</td>
 						</tr>
 					</table>

@@ -401,7 +401,7 @@
 					<table>
 						<tr>
 							<td>
-								<img src="https://controle.familiaaziz.org/img/header.jpg" width="100%" border="0" />
+								<img src="https://controle.missiowave.com.br/img/header.jpg" width="100%" border="0" />
 							</td>
 						</tr>
 					</table>
