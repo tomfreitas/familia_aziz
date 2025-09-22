@@ -12,21 +12,11 @@ class MailAgradecimento extends Mailable
 
     public $usuario;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public function __construct($usuario)
     {
         $this->usuario = $usuario;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->subject('Obrigado pela sua contribuição!')

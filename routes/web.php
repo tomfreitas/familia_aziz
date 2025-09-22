@@ -13,8 +13,11 @@ use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\EsqueciSenhaController;
 use App\Http\Controllers\ResetPasswordController;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailAgradecimento;
+use App\Models\User;
+
 
 
 /*
@@ -137,4 +140,14 @@ Route::get('/cron-log', function () {
     $lastEntries = array_slice($filtered, -10);
 
     return '<pre>' . implode("\n", $lastEntries) . '</pre>';
+});
+
+Route::get('/test-mail', function () {
+
+    $usuario = User::find(37); // ou pegue o usuário que quiser
+
+    Mail::to('wellington@shalomdigital.com.br')->send(new MailAgradecimento($usuario));
+
+    return 'E-mail enviado!';
+
 });

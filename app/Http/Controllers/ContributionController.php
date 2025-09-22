@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailAgradecimento;
 use Illuminate\Http\Request;
 use App\Models\Contribution;
-use App\Models\User;
 use Illuminate\Pagination\Paginator;
 
 class ContributionController extends Controller
