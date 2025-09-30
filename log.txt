@@ -80,3 +80,7 @@ Cron executado em Mon Aug  4 08:00:00 -03 2025
 Cron executado em Tue Aug 12 08:00:00 -03 2025
 Cron executado em Wed Aug 13 08:00:00 -03 2025
 Cron executado em Fri Aug 15 08:00:00 -03 2025
+Cron executado em Fri Sep 26 08:00:01 -03 2025
+Cron executado em Sat Sep 27 08:00:00 -03 2025
+Cron executado em Sun Sep 28 08:00:00 -03 2025
+Cron executado em Mon Sep 29 08:00:00 -03 2025
