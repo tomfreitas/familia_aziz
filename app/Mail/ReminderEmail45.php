@@ -5,7 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ReminderEmail45 extends Mailable
 {
@@ -13,21 +12,14 @@ class ReminderEmail45 extends Mailable
 
     public $usuario;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct($usuario)
     {
         $this->usuario = $usuario;
     }
 
-    /**
-     * Build the message.
-     */
     public function build()
     {
-        return $this
-            ->subject('Lembrete: Contribua com nossa ONG!')
+        return $this->subject('Um lembrete com carinho sobre sua contribuição')
             ->view('emails.reminder-email-45') // Blade para o conteúdo do e-mail
             ->with([
                 'nome' => $this->usuario->nome,

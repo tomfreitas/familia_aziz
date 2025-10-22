@@ -424,12 +424,19 @@
 						<tr>
 							<td>
                                 <p>&nbsp;</p>
-								<h1>Olá, {{ $usuario->nome }}!</h1>
-                                <p style="color:#444;">Muito obrigada por sua oferta e por seu apoio! É com muita alegria que recebemos esta preciosa semente!</p>
-                                <p style="color:#444;">Sua oferta contribui para o sustento e desenvolvimento dos projetos realizados no Oriente Médio por meio da Família Aziz.</p>
-                                <p style="color:#444;">Deus te abençoe!<br />Família Aziz</p>
+								<h1>Oi, {{ $usuario->nome }}! Tudo bem?</h1>
+                                <p style="color:#444;">Queremos agradecer de coração sua contribuição! </p>
+                                <p style="color:#444;">
+                                    Com o seu apoio, conseguimos manter viva a nossa missão e seguir com os projetos que impactam tantas vidas com o amor de Cristo aqui no Oriente Médio.<br />
+                                    Saiba que cada oferta faz uma diferença enorme e nos dá ainda mais força para continuar esse trabalho com amor, perseverança e dedicação.
+                                </p>
+                                <p style="color:#444;">Se precisar de qualquer coisa, estamos à disposição no WhatsApp: <a href="https://wa.me/+5521982082879">+55 21 98208-2879</a></p>
+                                <p style="color:#444;">
+                                    Mais uma vez, nosso muito obrigada!<br />
+                                    Deus te abençoe!
+                                </p>
                                 <p>&nbsp;</p>
-                                <p style="font-size:11px; font-style: italic; color: #444;">(Obs.: enviamos esse e-mail de acordo com sua prévia autorização).</p>
+                                <p style="color: #444;">Família Aziz</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;</p>
 							</td>

@@ -19,7 +19,7 @@ class ReminderEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Lembrete: Contribuição Agendada')
-                    ->view('emails.reminder');
+        return $this->subject('Um lembrete sobre sua contribuição')
+            ->view('emails.reminder');
     }
 }

@@ -424,12 +424,31 @@
 						<tr>
 							<td>
                                 <p>&nbsp;</p>
-								<h1>Olá, {{ $user->nome }}!</h1>
-                                <p style="color:#444;">Você está recebendo esse e-mail de lembrete pois está chegando o dia de sua oferta para a Família Aziz.</p>
-                                <p style="color:#444;">Obrigada por nos apoiar!</p>
-                                <p style="color:#444;">Deus te abençoe!</p>
+								<h1 style="margin-bottom: 10px;">Oi, {{ $user->nome }}! Tudo bem?</h1>
+                                <p style="color:#444;">Esperamos que esta mensagem te encontre bem.</p>
                                 <p>&nbsp;</p>
-                                <p style="font-size:12px; font-style: italic; color: #444;">(Obs.: enviamos esse e-mail de acordo com sua prévia autorização).</p>
+                                <p style="color:#444;">
+                                    Estamos passando aqui para lembrar da sua contribuição mensal para a Família Aziz.<br />
+                                    O seu apoio é fundamental para que possamos continuar nossos projetos e alcançar ainda mais pessoas com o amor de Cristo no Oriente Médio.</p>
+                                <p style="color:#444;">
+                                    Para facilitar, seguem os dados de pagamento:<br />
+                                    Associação Missionária Família Aziz<br />
+                                    PIX: contato@familiaaziz.rg<br />
+                                    Banco Bradesco (237) <br />
+                                    Agência: 2959-9<br />
+                                    Conta Corrente PJ: 13463-5
+                                </p>
+                                <p style="color:#444;">
+                                    Se tiver qualquer dúvida ou precisar de ajuda, estamos à disposição.<br />
+                                    Fale com a gente pelo WhatsApp: <a href="https://wa.me/+5521982082879">+55 21 98208-2879</a>
+                                </p>
+                                <p>&nbsp;</p>
+                                <p style="color:#444;">
+                                    Muito obrigada por caminhar conosco!<br />
+                                    Um abraço!<br />
+                                    Deus te abençoe!
+                                </p>
+                                <p style="color: #444;">Família Aziz</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;</p>
 							</td>

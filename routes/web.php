@@ -16,6 +16,7 @@ use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailAgradecimento;
+use App\Mail\ReminderEmail45;
 use App\Models\User;
 
 
@@ -144,9 +145,11 @@ Route::get('/cron-log', function () {
 
 Route::get('/test-mail', function () {
 
-    $usuario = User::find(37); // ou pegue o usuário que quiser
+    $usuario = User::find(7); // ou pegue o usuário que quiser
 
-    Mail::to('wellington@shalomdigital.com.br')->send(new MailAgradecimento($usuario));
+    //dd($usuario);
+
+    Mail::to('wellington.freitas@totaltargets.com.br')->send(new ReminderEmail45($usuario));
 
     return 'E-mail enviado!';
 
