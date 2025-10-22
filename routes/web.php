@@ -147,7 +147,7 @@ Route::get('/test-mail', function () {
 
     $usuario = User::find(7); // ou pegue o usuário que quiser
 
-    //dd($usuario);
+    dd($usuario);
 
     Mail::to('wellington.freitas@totaltargets.com.br')->send(new ReminderEmail45($usuario));
 
