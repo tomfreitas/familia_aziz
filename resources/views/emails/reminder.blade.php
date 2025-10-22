@@ -424,9 +424,8 @@
 						<tr>
 							<td>
                                 <p>&nbsp;</p>
-								<h1 style="margin-bottom: 10px;">Oi, {{ $user->nome }}! Tudo bem?</h1>
+								<h1 style="margin-bottom: 10px;">Oi, {{ $user->nome }}!<br />Tudo bem?</h1>
                                 <p style="color:#444;">Esperamos que esta mensagem te encontre bem.</p>
-                                <p>&nbsp;</p>
                                 <p style="color:#444;">
                                     Estamos passando aqui para lembrar da sua contribuição mensal para a Família Aziz.<br />
                                     O seu apoio é fundamental para que possamos continuar nossos projetos e alcançar ainda mais pessoas com o amor de Cristo no Oriente Médio.</p>

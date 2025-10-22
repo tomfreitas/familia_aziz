@@ -424,9 +424,8 @@
 						<tr>
 							<td>
                                 <p>&nbsp;</p>
-                                <h1 style="margin-bottom: 10px;">Oi, {{ $usuario->nome }}! Tudo bem?</h1>
+                                <h1 style="margin-bottom: 10px;">Oi, {{ $usuario->nome }}!<br />Tudo bem?</h1>
                                 <p style="color:#444;">Esperamos que esta mensagem te encontre bem.</p>
-                                <p>&nbsp;</p>
                                 <p style="color:#444;">
                                     Estamos passando aqui com muito carinho para lembrar da sua contribuição mensal com a Família Aziz. Até o momento, não identificamos o recebimento da sua oferta deste mês — mas, se ela já tiver sido realizada, por favor, desconsidere este lembrete.
                                 </p>

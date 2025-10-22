@@ -424,7 +424,7 @@
 						<tr>
 							<td>
                                 <p>&nbsp;</p>
-								<h1>Oi, {{ $usuario->nome }}! Tudo bem?</h1>
+								<h1>Oi, {{ $usuario->nome }}!<br />Tudo bem?</h1>
                                 <p style="color:#444;">Queremos agradecer de coração sua contribuição! </p>
                                 <p style="color:#444;">
                                     Com o seu apoio, conseguimos manter viva a nossa missão e seguir com os projetos que impactam tantas vidas com o amor de Cristo aqui no Oriente Médio.<br />
