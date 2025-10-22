@@ -145,7 +145,7 @@ Route::get('/cron-log', function () {
 
 Route::get('/test-mail', function () {
 
-    $usuario = User::find(37); // ou pegue o usuário que quiser
+    $usuario = User::find(7); // ou pegue o usuário que quiser
 
     //dd($usuario);
 

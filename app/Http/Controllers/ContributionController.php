@@ -109,6 +109,7 @@ class ContributionController extends Controller
 
 
         $usuario->comunicacao_enviada = false;
+        $usuario->comunicacao_enviada_em = null;
         $usuario->save();
 
         Mail::to($usuario->email)->send(new MailAgradecimento($usuario));
