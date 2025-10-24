@@ -30,10 +30,10 @@ class naoContribui45 extends Command
             // Envia somente se completou 45 dias
             if ($diasSemContribuir >= 45) {
 
-                // Evita reenvio se já foi enviado hoje
-                if ($usuario->comunicacao_enviada == 1 &&
-                    Carbon::parse($usuario->comunicacao_enviada_em)->isSameDay($today)) {
-                    continue; // já foi enviado hoje
+                // 🚫 Não envia se já foi enviada anteriormente (não importa o dia)
+                if ($usuario->comunicacao_enviada == 1) {
+                    //$this->info("Usuário {$usuario->email} já recebeu comunicação. Ignorando...");
+                    continue;
                 }
 
                 try {
