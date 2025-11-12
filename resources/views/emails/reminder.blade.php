@@ -432,7 +432,7 @@
                                 <p style="color:#444;">
                                     Para facilitar, seguem os dados de pagamento:<br />
                                     Associação Missionária Família Aziz<br />
-                                    PIX: contato@familiaaziz.rg<br />
+                                    PIX: contato@familiaaziz.org<br />
                                     Banco Bradesco (237) <br />
                                     Agência: 2959-9<br />
                                     Conta Corrente PJ: 13463-5
