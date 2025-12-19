@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailAgradecimento;
 use App\Mail\ReminderEmail45;
 use App\Models\User;
+use App\Http\Controllers\ChristmasEmailController;
 
 
 
@@ -154,3 +155,7 @@ Route::get('/test-mail', function () {
     return 'E-mail enviado!';
 
 });
+
+// Rotas para E-mail de Natal
+Route::get('/christmas-email', [ChristmasEmailController::class, 'index'])->name('christmas.index')->middleware('auth');
+Route::post('/christmas-email/send', [ChristmasEmailController::class, 'send'])->name('christmas.send')->middleware('auth');
