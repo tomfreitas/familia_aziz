@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendChristmasEmailJob;
+use App\Mail\ChristmasEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ChristmasEmailController extends Controller
 {
     /**
      * Dispara e-mails de Natal para todos os usuários da base.
-     * Envia 5 e-mails por minuto para evitar problemas com rate limiting.
+     * Envia todos de uma vez.
      */
     public function send()
     {
@@ -25,33 +27,27 @@ class ChristmasEmailController extends Controller
             ], 404);
         }
 
-        $totalUsers = $users->count();
-        $emailsPerMinute = 5;
-        $delayInSeconds = 60; // 1 minuto
+        $enviados = 0;
+        $erros = [];
 
-        foreach ($users as $index => $user) {
-            // Calcula o delay baseado no índice
-            // A cada 5 e-mails, adiciona 1 minuto de delay
-            $batchNumber = floor($index / $emailsPerMinute);
-            $delay = $batchNumber * $delayInSeconds;
-
-            SendChristmasEmailJob::dispatch($user)
-                ->delay(now()->addSeconds($delay));
+        foreach ($users as $user) {
+            try {
+                Mail::to($user->email)->send(new ChristmasEmail($user));
+                Log::info("E-mail de Natal enviado para: {$user->nome} ({$user->email})");
+                $enviados++;
+            } catch (\Exception $e) {
+                Log::error("Erro ao enviar e-mail de Natal para {$user->email}: " . $e->getMessage());
+                $erros[] = $user->email;
+            }
         }
-
-        // Calcula o tempo estimado para enviar todos os e-mails
-        $totalBatches = ceil($totalUsers / $emailsPerMinute);
-        $estimatedMinutes = $totalBatches - 1; // Primeira batch não tem delay
 
         return response()->json([
             'success' => true,
-            'message' => "Envio de e-mails de Natal iniciado!",
-            'total_usuarios' => $totalUsers,
-            'emails_por_minuto' => $emailsPerMinute,
-            'tempo_estimado' => $estimatedMinutes > 0
-                ? "{$estimatedMinutes} minuto(s)"
-                : "Menos de 1 minuto",
-            'total_batches' => $totalBatches
+            'message' => "Envio de e-mails de Natal concluído!",
+            'total_usuarios' => $users->count(),
+            'enviados' => $enviados,
+            'erros' => count($erros),
+            'emails_com_erro' => $erros
         ]);
     }
 

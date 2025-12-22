@@ -13,15 +13,13 @@
                         <h5><i class="fas fa-info-circle"></i> Informações do Envio</h5>
                         <ul class="mb-0">
                             <li><strong>Total de usuários:</strong> {{ $totalUsers }}</li>
-                            <li><strong>Taxa de envio:</strong> 5 e-mails por minuto</li>
-                            <li><strong>Tempo estimado:</strong> {{ ceil($totalUsers / 5) }} minuto(s)</li>
                         </ul>
                     </div>
 
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <strong>Atenção:</strong> Ao clicar em "Enviar", os e-mails serão enfileirados e enviados automaticamente.
-                        Certifique-se de que o <code>queue:work</code> está rodando.
+                        <strong>Atenção:</strong> Ao clicar em "Enviar", todos os e-mails serão enviados imediatamente.
+                        Aguarde o processo ser concluído.
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -46,7 +44,7 @@ document.getElementById('btnEnviar').addEventListener('click', function() {
     const resultado = document.getElementById('resultado');
 
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando... Aguarde';
 
     fetch('{{ route("christmas.send") }}', {
         method: 'POST',
@@ -59,19 +57,23 @@ document.getElementById('btnEnviar').addEventListener('click', function() {
     .then(data => {
         resultado.style.display = 'block';
         if (data.success) {
+            let errosHtml = '';
+            if (data.erros > 0) {
+                errosHtml = `<li><strong>E-mails com erro:</strong> ${data.emails_com_erro.join(', ')}</li>`;
+            }
             resultado.innerHTML = `
                 <div class="alert alert-success">
                     <h5><i class="fas fa-check-circle"></i> ${data.message}</h5>
                     <hr>
                     <ul class="mb-0">
-                        <li><strong>Total de e-mails:</strong> ${data.total_usuarios}</li>
-                        <li><strong>E-mails por minuto:</strong> ${data.emails_por_minuto}</li>
-                        <li><strong>Tempo estimado:</strong> ${data.tempo_estimado}</li>
-                        <li><strong>Total de lotes:</strong> ${data.total_batches}</li>
+                        <li><strong>Total de usuários:</strong> ${data.total_usuarios}</li>
+                        <li><strong>Enviados com sucesso:</strong> ${data.enviados}</li>
+                        <li><strong>Erros:</strong> ${data.erros}</li>
+                        ${errosHtml}
                     </ul>
                 </div>
             `;
-            btn.innerHTML = '<i class="fas fa-check"></i> E-mails Enfileirados!';
+            btn.innerHTML = '<i class="fas fa-check"></i> E-mails Enviados!';
             btn.classList.remove('btn-success');
             btn.classList.add('btn-outline-success');
         } else {
