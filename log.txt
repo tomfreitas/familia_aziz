@@ -116,3 +116,9 @@ Cron executado em Tue Dec 16 16:57:00 -03 2025
 Cron executado em Wed Dec 17 16:57:00 -03 2025
 Cron executado em Thu Dec 18 16:57:00 -03 2025
 Cron executado em Sun Dec 21 16:57:00 -03 2025
+Cron executado em Mon Dec 22 17:04:30 -03 2025
+Cron executado em Thu Dec 25 16:57:00 -03 2025
+Cron executado em Sat Dec 27 16:57:00 -03 2025
+Cron executado em Sun Dec 28 16:57:00 -03 2025
+Cron executado em Fri Jan  9 16:57:01 -03 2026
+Cron executado em Sat Jan 10 16:57:01 -03 2026

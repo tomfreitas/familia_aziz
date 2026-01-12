@@ -259,6 +259,9 @@ class UserController extends Controller
         if($senha != $repsenha){
             return redirect()->back()->with('error', 'As senhas não conferem');
         } elseif ($senha) {
+            // Verifica se o checkbox de não receber lembrete está marcado
+            $melhorDia = $request->has('nao_receber_lembrete') ? null : $request->melhor_dia_oferta;
+
             $updated = DB::table('users')
                 ->where('id', $id)
                 ->update([
@@ -269,7 +272,7 @@ class UserController extends Controller
                     'cidade'            => $request->cidade,
                     'celular'           => $request->telefone,
                     'data_mantenedor'   => $data_mante,
-                    'melhor_dia'        => $request->melhor_dia_oferta,
+                    'melhor_dia'        => $melhorDia,
                     'categoria'         => $request->categoria,
                     'aniversário'       => $formatdata,
                     'updated_at'        => now(),
@@ -277,6 +280,9 @@ class UserController extends Controller
                     'password'          => Hash::make($request->senha),
                 ]);
         } else {
+            // Verifica se o checkbox de não receber lembrete está marcado
+            $melhorDia = $request->has('nao_receber_lembrete') ? null : $request->melhor_dia_oferta;
+
             $updated = DB::table('users')
                 ->where('id', $id)
                 ->update([
@@ -287,7 +293,7 @@ class UserController extends Controller
                     'cidade'            => $request->cidade,
                     'celular'           => $request->telefone,
                     'data_mantenedor'   => $data_mante,
-                    'melhor_dia'        => $request->melhor_dia_oferta,
+                    'melhor_dia'        => $melhorDia,
                     'categoria'         => $request->categoria,
                     'aniversário'       => $formatdata,
                     'updated_at'        => now(),

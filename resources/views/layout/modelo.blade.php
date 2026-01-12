@@ -89,7 +89,7 @@
         <div class="row tela">
 
             <div class="sidebar border-right col-md-2 col-lg-2 p-0 bg-body-tertiary d-md-block d-none vh-100 position-fixed">
-                <a class="navbar-brand d-block p-4 bg-light w-100 d-flex justify-content-center" style="height: 150px !important" href="{{ route('home')}}">
+                <a class="navbar-brand d-block p-4 bg-light w-100 d-flex justify-content-center" style="height: 150px !important" href="{{ route('users.index')}}">
                     <img src="{{ asset('img/logo-familia-aziz.webp') }}" class="img-fluid" style="mix-blend-mode: multiply;" alt="">
                 </a>
                 <!-- Desktop -->

@@ -420,6 +420,13 @@
                                 </select>
                             </div>
 
+                            <div class="col-md-6 mb-3 d-flex align-items-end">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="nao_receber_lembrete" name="nao_receber_lembrete" value="1" {{ $usuario->melhor_dia === null ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="nao_receber_lembrete">Não quer receber e-mail de lembrete</label>
+                                </div>
+                            </div>
+
 
 
                             @if ( $user == 1 && $usuario->type_user == 1 )
