@@ -123,12 +123,17 @@
                         ?>
                         <div class="row row-cols-12 mb-md-0 mb-4 bg-white">
                             <div class="col-md-6 col-12 border-bottom d-flex align-items-center text-uppercase small fw-bold">
-                                <a class="link-verde" href="{{ route('contributions.create', $contribution->user->id) }}">{{ $contribution->user->nome }}</a>
+                                @if($contribution->user)
+                                    <a class="link-verde" href="{{ route('contributions.create', $contribution->user->id) }}">{{ $contribution->user->nome }}</a>
+                                @else
+                                    <span class="text-muted">{{ $contribution->nome_usuario_excluido ?? 'Usuário excluído' }}</span>
+                                @endif
                             </div>
                             <div class="col-md-2 col-12 border-bottom d-flex align-items-center small">{{ $contribution->forma_pgto }}</div>
                             <div class="col-md-2 col-12 border-bottom d-flex align-items-center justify-content-center small">{{ $data_f }}</div>
                             <div class="col-md-1 col-12 border-bottom d-flex align-items-center justify-content-center small">R$ {{ $valor }}</div>
                             <div class="col-md-1 col-12 border-bottom d-flex align-items-center justify-content-center gap-2 small">
+                                @if($contribution->user)
                                 <a href="{{ route('contributions.edit', $contribution->id)}}">
                                     <span class="material-symbols-outlined text-cinza symbol-filled">manage_accounts</span>
                                 </a>
@@ -139,6 +144,9 @@
                                         delete
                                     </button>
                                 </form>
+                                @else
+                                <span class="text-muted small">-</span>
+                                @endif
                                 {{-- <a href="{{ route('contributions.destroy', [$contribution->id]) }}" class="material-symbols-outlined text-vermelho">
                                     delete
                                 </a> --}}

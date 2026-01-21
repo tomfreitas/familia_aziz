@@ -47,7 +47,8 @@ class User extends Authenticatable
         'type_user',
         'comunicacao_enviada',
         'comunicacao_enviada_em',
-        'data_mantenedor'
+        'data_mantenedor',
+        'categoria'
     ];
 
     /**

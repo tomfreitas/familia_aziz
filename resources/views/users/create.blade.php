@@ -391,7 +391,13 @@
                             </div>
 
                             <div class="col-12 text-center mt-4">
-                                <button type="submit" class="btn btn-primary rounded-pill px-5">Cadastrar mantenedor</button>
+                                <button type="submit" class="btn btn-primary rounded-pill px-5" id="btnCadastrar">
+                                    <span id="btnTexto">Cadastrar mantenedor</span>
+                                    <span id="btnSpinner" class="d-none">
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        Cadastrando...
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -399,6 +405,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const btnCadastrar = document.getElementById('btnCadastrar');
+            const btnTexto = document.getElementById('btnTexto');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            // Desabilita o botão e mostra o spinner
+            btnCadastrar.disabled = true;
+            btnTexto.classList.add('d-none');
+            btnSpinner.classList.remove('d-none');
+        });
+    </script>
 
 @endsection
 

@@ -81,6 +81,9 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store')->middleware('auth');
 Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
 Route::put('/users/update/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
+Route::put('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate')->middleware('auth');
+Route::put('/users/{user}/reactivate', [UserController::class, 'reactivate'])->name('users.reactivate')->middleware('auth');
 Route::post('users/{user}/observacoes', [UserController::class, 'storeObservacao'])->name('users.observacoes.store')->middleware('auth');
 Route::post('observacoes/{observacao}/respostas', [UserController::class, 'storeResposta'])->name('observacoes.respostas.store')->middleware('auth');
 // Rota para editar a observacao

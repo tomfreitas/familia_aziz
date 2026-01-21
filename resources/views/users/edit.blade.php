@@ -449,6 +449,7 @@
                         <div class="col-12 text-center mt-5 mb-4">
                             <button type="submit" class="btn btn-primary rounded-pill px-5">Atualizar usuário</button>
                         </div>
+
                         @if ($usuario->user_type == 1)
                             <div class="col-12 mb-3 d-flex">
                                 <button type="button" class="btn btn-verde px-5 align-self-end border-0 rounded-pill" id="abrir_comentarios"
@@ -476,7 +477,7 @@
                                     <textarea class="form-control form-text" name="observacoes" id="observacoes" cols="30" rows="7" placeholder="Observação" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary rounded-pill px-5">Registar observação</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill px-5">Registrar observação</button>
                                 </div>
                             </form>
                         </div>
@@ -604,10 +605,117 @@
 
                         </div>
 
+                        @if ($user == 1)
+                        <div class="col-12">
+                            <hr class="opacity-25 border-success mt-5">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <p class="fw-bold text-danger mb-3">Zona de Perigo</p>
+                            <div class="d-flex gap-2 flex-wrap">
+                                @if ($usuario->categoria != 11)
+                                    <button type="button" class="btn btn-aviso rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalDesativar">
+                                        <i class="fa-solid fa-user-slash me-2"></i>Desativar Usuário
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-verde rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalReativar">
+                                        <i class="fa-solid fa-user-check me-2"></i>Reativar Usuário
+                                    </button>
+                                @endif
+                                <button type="button" class="btn btn-vermelho rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalExcluirUsuario">
+                                    <i class="fa-solid fa-trash me-2"></i>Excluir Permanentemente
+                                </button>
+                            </div>
+                        </div>
+                        @endif
+
                     </div>
                 </div>
 
 
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Desativar Usuário -->
+    <div class="modal fade" id="modalDesativar" tabindex="-1" aria-labelledby="modalDesativarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="modalDesativarLabel">
+                        <i class="fa-solid fa-user-slash me-2"></i>Desativar Usuário
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja <strong>desativar</strong> o usuário <strong>{{ $usuario->nome }}</strong>?</p>
+                    <p class="text-muted small">O usuário será movido para a categoria "Mantenedor inativo" e não receberá mais comunicações. Você poderá reativá-lo posteriormente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('users.deactivate', $usuario->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-aviso rounded-pill px-4">Confirmar Desativação</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Reativar Usuário -->
+    <div class="modal fade" id="modalReativar" tabindex="-1" aria-labelledby="modalReativarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalReativarLabel">
+                        <i class="fa-solid fa-user-check me-2"></i>Reativar Usuário
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja <strong>reativar</strong> o usuário <strong>{{ $usuario->nome }}</strong>?</p>
+                    <p class="text-muted small">O usuário será movido para a categoria "Mantenedor" e voltará a receber comunicações.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('users.reactivate', $usuario->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn text-white btn-success rounded-pill px-4">Confirmar Reativação</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Excluir Usuário Permanentemente -->
+    <div class="modal fade" id="modalExcluirUsuario" tabindex="-1" aria-labelledby="modalExcluirUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-vermelho text-white">
+                    <h5 class="modal-title" id="modalExcluirUsuarioLabel">
+                        <i class="fa-solid fa-trash me-2"></i>Excluir Permanentemente
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Atenção!</strong> Esta ação não pode ser desfeita.</p>
+                    <p>Você tem certeza que deseja <strong>excluir permanentemente</strong> o usuário <strong>{{ $usuario->nome }}</strong>?</p>
+                    <p class="text-muted small">Todos os dados relacionados serão removidos, incluindo:</p>
+                    <ul class="text-muted small">
+                        <li>Contribuições registradas</li>
+                        <li>Observações e respostas</li>
+                        <li>Histórico de comunicações</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cinza rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-vermelho rounded-pill px-4">Excluir Permanentemente</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

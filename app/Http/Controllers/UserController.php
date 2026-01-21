@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UsuarioNaoContribuiu180;
+use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -33,7 +34,7 @@ class UserController extends Controller
                                                 ->get();
 
         $orderBy                = $request->input('orderBy', 'id');
-        $sort                   = $request->input('sort', 'asc');
+        $sort                   = $request->input('sort', 'desc');
         $categoria              = $request->input('categoria', 0);
         $search                 = $request->input('search');
         $sem_contribuicao_45    = $request->input('sem_contribuicao_45', 0);
@@ -167,6 +168,21 @@ class UserController extends Controller
                         'type_user'              => 2,
                     ]);
         if($inserted){
+            // Envia e-mail de boas-vindas
+            $userData = [
+                'nome' => $request->nome,
+                'email' => $request->email,
+                'cidade' => $request->cidade,
+                'estado' => $request->estado,
+            ];
+
+            try {
+                Mail::to($request->email)->send(new WelcomeEmail($userData));
+            } catch (\Exception $e) {
+                // Log do erro, mas não impede o cadastro
+                \Log::error('Erro ao enviar e-mail de boas-vindas: ' . $e->getMessage());
+            }
+
             return redirect()->route('users.index')->with('success', 'Usuário cadastrado');
         }
             return redirect()->back()->with('error', 'Usuário não cadastrado');
@@ -313,7 +329,48 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        // Exclui as contribuições relacionadas
+        $usuario->contributions()->delete();
+
+        // Exclui as observações relacionadas (respostas serão excluídas em cascata)
+        $usuario->observacoes()->delete();
+
+        // Exclui o usuário
+        $usuario->delete();
+
+        return redirect()->route('users.index')->with('success', 'Usuário excluído permanentemente');
+    }
+
+    /**
+     * Deactivate the specified user.
+     */
+    public function deactivate(string $id)
+    {
+        $usuario = User::findOrFail($id);
+
+        // Muda a categoria para 11 (Mantenedor inativo)
+        $usuario->update([
+            'categoria' => 11
+        ]);
+
+        return redirect()->back()->with('message', 'Usuário desativado com sucesso');
+    }
+
+    /**
+     * Reactivate the specified user.
+     */
+    public function reactivate(string $id)
+    {
+        $usuario = User::findOrFail($id);
+
+        // Muda a categoria para 1 (Mantenedor ativo)
+        $usuario->update([
+            'categoria' => 1
+        ]);
+
+        return redirect()->back()->with('message', 'Usuário reativado com sucesso');
     }
 
     public function isBirthday()
