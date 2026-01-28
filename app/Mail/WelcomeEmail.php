@@ -19,7 +19,7 @@ class WelcomeEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Bem-vindo à Família Aziz!')
+        return $this->subject('Bem-vindo(a) à Família Aziz!')
                     ->view('emails.welcome');
     }
 }

@@ -96,7 +96,7 @@
                                 &nbsp;<span class="material-symbols-outlined text-vermelho symbol-filled h6 m-0">error</span>
                             @endif
                         </div>
-                        <div class="col-md-2 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary" target="_blank" href="https://wa.me/{{ $telefone }}">{{ $usuario->celular }}</a></div>
+                        <div class="col-md-2 py-1 col-12 border-bottom d-flex align-items-center small"><a class="fw-bold text-success" target="_blank" href="https://wa.me/{{ $telefone }}">{{ $usuario->celular }}</a></div>
                         <div class="col-md-3 py-1 col-12 border-bottom d-flex align-items-center small"><a class="text-primary" href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></div>
                         @foreach ($grupos as $cat => $val)
                             @if ($usuario->categoria == $cat)

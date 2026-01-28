@@ -113,7 +113,7 @@
                                     $telefone = str_replace($car, '', $usuario->celular);
                                 ?>
                                 <label for="telefone" class="form-label fw-bold mb-3">Celular</label>
-                                <a href="https://wa.me/{{ $telefone }}" target="_blank" class="link-primary">{{ $usuario->celular }}</a>
+                                <a href="https://wa.me/{{ $telefone }}" target="_blank" class="fw-bold text-success">{{ $usuario->celular }}</a>
                                 <input type="hidden" disabled name="telefone" class="form-control px-0" id="telefone" value="{{ $usuario->celular }}">
                             </div>
 
