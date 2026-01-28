@@ -36,6 +36,7 @@ class UserController extends Controller
         $orderBy                = $request->input('orderBy', 'id');
         $sort                   = $request->input('sort', 'desc');
         $categoria              = $request->input('categoria', 0);
+        $estado                 = $request->input('estado', '');
         $search                 = $request->input('search');
         $sem_contribuicao_45    = $request->input('sem_contribuicao_45', 0);
 
@@ -47,6 +48,12 @@ class UserController extends Controller
         // Filtro por categoria
         if ($categoria != 0) {
             $query->where('categoria', $categoria);
+            $cont = $query->count();
+        }
+
+        // Filtro por estado
+        if (!empty($estado)) {
+            $query->where('estado', $estado);
             $cont = $query->count();
         }
 
@@ -118,7 +125,14 @@ class UserController extends Controller
             '11' => 'Mantenedores inativos',
         ];
 
-        return view('users.index', compact('usuarios', 'orderBy', 'sort', 'cont' , 'search', 'grupos', 'sem_contribuicao_45','categoria', 'notificacoesAniversario'))->with('titulo', $titulo);
+        // Buscar estados distintos do banco de dados
+        $estados = User::whereNotNull('estado')
+            ->where('estado', '!=', '')
+            ->distinct()
+            ->orderBy('estado')
+            ->pluck('estado');
+
+        return view('users.index', compact('usuarios', 'orderBy', 'sort', 'cont' , 'search', 'grupos', 'sem_contribuicao_45','categoria', 'estado', 'estados', 'notificacoesAniversario'))->with('titulo', $titulo);
     }
 
 

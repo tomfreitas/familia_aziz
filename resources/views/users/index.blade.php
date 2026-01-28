@@ -63,11 +63,17 @@
                             @endif
                         @endforeach
                     </select>
+                    <select name="estado" id="estado" class="form-control form-select form-select-sm rounded-start-pill rounded-end-pill me-4 w-75" onchange="this.form.submit()">
+                        <option value="" {{ $estado == '' ? 'selected' : '' }}>Selecione o estado</option>
+                        @foreach ($estados as $est)
+                            <option value="{{ $est }}" {{ $estado == $est ? 'selected' : '' }}>{{ $est }}</option>
+                        @endforeach
+                    </select>
                 </form>
                 <span>Filtros:</span>
-                <a href="{{ route('users.index', ['search' => $search, 'orderBy' => 'nome', 'sort' => $sort === 'asc' ? 'desc' : 'asc','categoria' => $categoria, 'sem_contribuicao_45' => $sem_contribuicao_45 ]) }}" class="border-end px-2 text-verde d-flex align-items-center" id="sortName" data-sort="asc"><span class="material-symbols-outlined" title="Ordenar por nome">sort_by_alpha</span></a>
-                <a href="{{ route('users.index', ['search' => $search, 'orderBy' => 'id', 'sort' => $sort === 'asc' ? 'desc' : 'asc','categoria' => $categoria, 'sem_contribuicao_45' => $sem_contribuicao_45 ]) }}" class="px-2 text-verde d-flex align-items-center" id="sortCreated"><span class="material-symbols-outlined" title="Ordenar por entrada">history</span></a>
-                <a href="{{ route('users.index', [ 'search' => $search, 'orderBy' => 'created_at', 'categoria' => $categoria, 'sem_contribuicao_45' => request('sem_contribuicao_45')=== '1' ? '2' : '1' ]) }}" class="px-2 text-verde d-flex align-items-center" id="sortCreated"><span class="material-symbols-outlined" title="Ordenar por tempo sem contribuição">timer_off</span></a>
+                <a href="{{ route('users.index', ['search' => $search, 'orderBy' => 'nome', 'sort' => $sort === 'asc' ? 'desc' : 'asc','categoria' => $categoria, 'estado' => $estado, 'sem_contribuicao_45' => $sem_contribuicao_45 ]) }}" class="border-end px-2 text-verde d-flex align-items-center" id="sortName" data-sort="asc"><span class="material-symbols-outlined" title="Ordenar por nome">sort_by_alpha</span></a>
+                <a href="{{ route('users.index', ['search' => $search, 'orderBy' => 'id', 'sort' => $sort === 'asc' ? 'desc' : 'asc','categoria' => $categoria, 'estado' => $estado, 'sem_contribuicao_45' => $sem_contribuicao_45 ]) }}" class="px-2 text-verde d-flex align-items-center" id="sortCreated"><span class="material-symbols-outlined" title="Ordenar por entrada">history</span></a>
+                <a href="{{ route('users.index', [ 'search' => $search, 'orderBy' => 'created_at', 'categoria' => $categoria, 'estado' => $estado, 'sem_contribuicao_45' => request('sem_contribuicao_45')=== '1' ? '2' : '1' ]) }}" class="px-2 text-verde d-flex align-items-center" id="sortCreated"><span class="material-symbols-outlined" title="Ordenar por tempo sem contribuição">timer_off</span></a>
                 <a href="{{ route('users.index') }}" class="px-2 text-verde d-flex align-items-center border-start border-verde" id="sortCreated"><span class="material-symbols-outlined" title="Limpar filtros">filter_alt_off</span></a>
             </div>
         </div>
@@ -124,6 +130,7 @@
                     'orderBy' => request('orderBy'),
                     'sort' => request('sort'),
                     'categoria' => request('categoria'),
+                    'estado' => request('estado'),
                     'search' => request('search'),
                     'sem_contribuicao_45' => request('sem_contribuicao_45'),
                 ])->links() }}
