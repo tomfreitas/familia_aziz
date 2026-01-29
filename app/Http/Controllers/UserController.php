@@ -39,6 +39,8 @@ class UserController extends Controller
         $estado                 = $request->input('estado', '');
         $search                 = $request->input('search');
         $sem_contribuicao_45    = $request->input('sem_contribuicao_45', 0);
+        $sem_contribuicao_180   = $request->input('sem_contribuicao_180', 0);
+        $aniversariantes_mes    = $request->input('aniversariantes_mes', 0);
 
         $cont = false;
 
@@ -82,10 +84,8 @@ class UserController extends Controller
                 });
             });
             $cont = $query->count();
-
         } elseif ($sem_contribuicao_45 == 2) {
             $ultimo_dia = now()->subDays(45); // Data limite de 45 dias atrás
-
             $query->where(function ($q) use ($ultimo_dia) {
                 $q->whereDoesntHave('contributions', function ($q) use ($ultimo_dia) {
                     $q->where('data_pgto', '>=', $ultimo_dia); // Sem contribuição nos últimos 45 dias
@@ -98,7 +98,39 @@ class UserController extends Controller
                 });
             });
             $cont = $query->count();
+        }
 
+        // Filtro sem contribuição 180 dias (apenas quem está há mais de 180 dias, sem duplicar com 45)
+        if ($sem_contribuicao_180 == 1) {
+            $ultimo180 = now()->subDays(180);
+            $query->where('categoria', 1);
+            $query->where(function ($q) use ($ultimo180) {
+                $q->where(function ($q2) use ($ultimo180) {
+                    $q2->whereDoesntHave('contributions', function ($q3) use ($ultimo180) {
+                        $q3->where('data_pgto', '>=', $ultimo180);
+                    })->where('data_mantenedor', '<=', $ultimo180);
+                })
+                ->orWhere(function ($q2) use ($ultimo180) {
+                    $q2->whereHas('contributions', function ($q3) use ($ultimo180) {
+                        $q3->where('data_pgto', '<', $ultimo180);
+                    });
+                });
+            });
+            // Filtra no PHP para garantir que só quem está há mais de 180 dias apareça
+            $usuarios = $query->get()->filter(function ($user) use ($ultimo180) {
+                $dataReferencia = $user->contributions()->orderBy('data_pgto', 'desc')->value('data_pgto') ?? $user->data_mantenedor;
+                return $dataReferencia <= $ultimo180;
+            });
+            $cont = $usuarios->count();
+            // Paginação manual
+            $usuarios = $usuarios->forPage(request('page', 1), 13);
+        }
+
+        // Filtro aniversariantes do mês
+        if ($aniversariantes_mes == 1) {
+            $mesAtual = now()->month;
+            $query->whereMonth('aniversário', $mesAtual);
+            $cont = $query->count();
         }
 
         $usuarios = $query->orderBy($orderBy, $sort)->paginate(13);

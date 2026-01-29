@@ -33,13 +33,15 @@
     <div class="container-fluid">
         <div class="d-md-none d-block">
             <div class="row">
-                <div class="col-12 d-flex justify-content-between mb-4">
+                <div class="col-12 d-flex justify-content-between mb-4 mt-3">
                     <a href="/" class="m-0 p-0 d-flex">
-                        <img src="{{ asset('img/logo-familia-aziz.webp') }}" class="img-fluid" style="width: 170px; mix-blend-mode: multiply;" alt="">
+                        <div class="bg-white p-1 rounded">
+                            <img src="{{ asset('img/logo-familia-aziz.webp') }}" class="img-fluid" style="width: 120px;" alt="">
+                        </div>
                     </a>
-                    <a class="btn btn-outline-filtro my-3" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                        <i class="fa-solid fa-bars"></i>
-                    </a>
+                    <button class="btn btn-light shadow-sm d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <span style="font-size: 18px; line-height: 1;">≡</span>
+                    </button>
                 </div>
             </div>
 
@@ -52,14 +54,14 @@
                 <div class="offcanvas-body">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('home')}}">
-                                <i class="fa-solid fa-list"></i> Menu 1
+                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('dashboard.index')}}">
+                                <i class="fa-solid fa-chart-pie"></i> Dashboard
                             </a>
-                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('home')}}">
-                                <i class="fa-solid fa-list"></i> Menu 2
+                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('users.index')}}">
+                                <i class="fa-solid fa-users"></i> Mantenedores
                             </a>
-                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('home')}}">
-                                <i class="fa-solid fa-list"></i> Menu 3
+                            <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('contributions.index')}}">
+                                <i class="fa-solid fa-money-bill"></i> Contribuições
                             </a>
                         </li>
                         @if (auth()->check())
@@ -100,6 +102,11 @@
                     <!-- itens menu -->
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('dashboard.index')}}">
+                                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{{ route('users.index')}}">
                                     <span class="material-symbols-outlined">group</span> Mantenedores
@@ -158,7 +165,7 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-4">
                     @if ( auth()->check() )
                         <span class="text-white d-md-block d-none h5"> Olá, {{ auth()->user()->nome }}</span>
-                        <span class="text-white h5 position-relative mb-md- mb-0 d-md-none d-block"> Olá, {{ auth()->user()->nome }}</span>
+                        <span class="text-white h5 position-relative mb-0 d-md-none d-block"> Olá, {{ auth()->user()->nome }}</span>
                     @endif
                 </div>
                 <div>

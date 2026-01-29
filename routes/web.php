@@ -10,6 +10,7 @@ use App\Http\Controllers\ObservacaoController;
 use App\Http\Controllers\RespostaController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ContributionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\EsqueciSenhaController;
 use App\Http\Controllers\ResetPasswordController;
@@ -71,6 +72,9 @@ Route::middleware(['web'])->group(function () {
 
 //HomeController
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('auth');
 
 /*  Usuarios */
 //Route::resource('users', UserController::class)->middleware('auth');
