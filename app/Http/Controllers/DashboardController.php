@@ -42,17 +42,23 @@ class DashboardController extends Controller
         $ultimo45dias = Carbon::now()->subDays(45);
         $semContribuicao45 = User::where('categoria', 1)
             ->where(function ($query) use ($ultimo45dias) {
-                $query->whereDoesntHave('contributions', function ($q) use ($ultimo45dias) {
-                    $q->where('data_pgto', '>=', $ultimo45dias);
-                })->where('data_mantenedor', '<=', $ultimo45dias);
-            })
-            ->orWhere(function ($query) use ($ultimo45dias) {
-                $query->where('categoria', 1)
-                    ->whereHas('contributions', function ($q) use ($ultimo45dias) {
-                        $q->where('data_pgto', '<', $ultimo45dias);
+                $query->where(function ($q) use ($ultimo45dias) {
+                    $q->whereDoesntHave('contributions', function ($q2) use ($ultimo45dias) {
+                        $q2->where('data_pgto', '>=', $ultimo45dias);
+                    })->where('data_mantenedor', '<=', $ultimo45dias);
+                })
+                ->orWhere(function ($q) use ($ultimo45dias) {
+                    $q->whereHas('contributions', function ($q2) use ($ultimo45dias) {
+                        $q2->where('data_pgto', '<', $ultimo45dias);
                     });
+                });
             })
-            ->count();
+            ->get()
+            ->filter(function ($user) use ($ultimo45dias) {
+                // Pega a última contribuição ou data de mantenedor
+                $dataReferencia = $user->contributions()->orderBy('data_pgto', 'desc')->value('data_pgto') ?? $user->data_mantenedor;
+                return $dataReferencia <= $ultimo45dias;
+            })->count();
 
         // Mantenedores sem contribuição há mais de 180 dias (sem duplicar com 45 dias)
         $ultimo180dias = Carbon::now()->subDays(180);

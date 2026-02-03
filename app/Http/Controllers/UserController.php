@@ -87,21 +87,39 @@ class UserController extends Controller
             });
             $cont = $query->count();
         } elseif ($sem_contribuicao_45 == 2) {
-            // Mantenedores sem contribuição há mais de 45 dias (igual ao Dashboard)
+            // Mantenedores sem contribuição há mais de 45 dias (filtra pela ÚLTIMA contribuição)
             $ultimo_dia = now()->subDays(45);
-            $query->where('categoria', 1); // Apenas mantenedores
-            $query->where(function ($q) use ($ultimo_dia) {
-                $q->whereDoesntHave('contributions', function ($q2) use ($ultimo_dia) {
-                    $q2->where('data_pgto', '>=', $ultimo_dia);
-                })->where('data_mantenedor', '<=', $ultimo_dia);
-            })
-            ->orWhere(function ($q) use ($ultimo_dia) {
-                $q->where('categoria', 1)
-                    ->whereHas('contributions', function ($q2) use ($ultimo_dia) {
-                        $q2->where('data_pgto', '<', $ultimo_dia);
+            $usuariosCollection = User::where('categoria', 1)
+                ->where(function ($q) use ($ultimo_dia) {
+                    $q->where(function ($q2) use ($ultimo_dia) {
+                        $q2->whereDoesntHave('contributions', function ($q3) use ($ultimo_dia) {
+                            $q3->where('data_pgto', '>=', $ultimo_dia);
+                        })->where('data_mantenedor', '<=', $ultimo_dia);
+                    })
+                    ->orWhere(function ($q2) use ($ultimo_dia) {
+                        $q2->whereHas('contributions', function ($q3) use ($ultimo_dia) {
+                            $q3->where('data_pgto', '<', $ultimo_dia);
+                        });
                     });
-            });
-            $cont = $query->count();
+                })
+                ->get()
+                ->filter(function ($user) use ($ultimo_dia) {
+                    // Pega a última contribuição ou data de mantenedor
+                    $dataReferencia = $user->contributions()->orderBy('data_pgto', 'desc')->value('data_pgto') ?? $user->data_mantenedor;
+                    return $dataReferencia <= $ultimo_dia;
+                });
+            $cont = $usuariosCollection->count();
+            // Paginação manual com LengthAwarePaginator
+            $page = request('page', 1);
+            $perPage = 13;
+            $usuariosPaginados = $usuariosCollection->forPage($page, $perPage);
+            $usuarios = new LengthAwarePaginator(
+                $usuariosPaginados,
+                $cont,
+                $perPage,
+                $page,
+                ['path' => request()->url(), 'query' => request()->query()]
+            );
         }
 
         // Filtro sem contribuição 180 dias (apenas quem está há mais de 180 dias)
@@ -148,8 +166,8 @@ class UserController extends Controller
             $cont = $query->count();
         }
 
-        // Só executa a query padrão se NÃO for filtro de 180 dias (que já tem lógica própria)
-        if ($sem_contribuicao_180 != 1) {
+        // Só executa a query padrão se NÃO for filtro de 180 dias ou 45 dias (que já têm lógica própria)
+        if ($sem_contribuicao_180 != 1 && $sem_contribuicao_45 != 2) {
             $usuarios = $query->orderBy($orderBy, $sort)->paginate(13);
             $cont = $query->count();
         }
