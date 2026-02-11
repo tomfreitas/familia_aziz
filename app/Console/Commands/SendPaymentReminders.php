@@ -25,6 +25,24 @@ class SendPaymentReminders extends Command
                       ->get();
 
         foreach ($users as $user) {
+            // Calcula a data do melhor_dia do mês anterior para definir o início do ciclo
+            $melhorDia = $user->melhor_dia;
+            $previousMonth = now()->subMonth();
+            $lastDayPrevMonth = $previousMonth->daysInMonth;
+            $dayPrev = min($melhorDia, $lastDayPrevMonth);
+            $previousMelhorDia = $previousMonth->copy()->setDay($dayPrev)->startOfDay();
+
+            // Verifica se o usuário já fez uma contribuição após o melhor_dia do mês anterior até hoje
+            $alreadyContributed = Contribution::where('user_id', $user->id)
+                ->where('data_pgto', '>', $previousMelhorDia->toDateString())
+                ->where('data_pgto', '<=', now()->toDateString())
+                ->exists();
+
+            if ($alreadyContributed) {
+                $this->info("Usuário {$user->nome} já contribuiu neste ciclo. Lembrete não enviado.");
+                continue;
+            }
+
             Mail::to($user->email)->send(new ReminderEmail($user));
             $this->info("E-mail de lembrete enviado para: {$user->nome}");
         }
