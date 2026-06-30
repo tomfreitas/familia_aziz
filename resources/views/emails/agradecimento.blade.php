@@ -425,9 +425,9 @@
 							<td>
                                 <p>&nbsp;</p>
 								<h1>Olá, {{ $usuario->nome }}!</h1>
-                                <p style="color:#444;">Agradecemos profundamente por sua fidelidade ao ofertar mais um mês em favor da obra missionária. Seu apoio é essencial para que a missão continue avançando no Oriente Médio, levando esperança, cuidado e o amor de Deus aos menos alcançados.</p>
-                                <p style="color:#444;">Sua generosidade nos encoraja e fortalece. Que Deus o recompense, renove suas forças e encha seu coração de paz. Seguimos gratos por caminhar conosco nessa Missão.</p>
-                                <p style="color:#444;">Se precisar de qualquer coisa, estamos à disposição no WhatsApp: <a href="https://wa.me/+5521982082879">+55 21 98208-2879</a></p>
+                                <p style="color:#444;">Queremos expressar nossa profunda gratidão pela sua fidelidade em apoiar nossa missão no Oriente Médio.<br />Sua contribuição mensal é um ato de amor e de fé. Por meio dela, você participa daquilo que Deus está realizando entre povos e comunidades que, muitas vezes, vivem em contextos desafiadores e têm pouco acesso ao Evangelho e ao cuidado cristão.<br />Cada oração, cada oferta e cada gesto fortalece nosso trabalho e nos permite permanecer no campo missionário, servindo com esperança, compaixão e dedicação.</p>
+                                <p style="color:#444;">Obrigado por caminhar conosco mais esse mês. Você não está apenas sustentando um projeto; você faz parte desta missão. Os frutos que Deus tem produzido também são resultado da sua parceria e generosidade.</p>
+                                <p style="color:#444;">Oramos para que o Senhor continue abençoando sua vida, sua família e tudo o que Ele colocou em suas mãos. Que Ele retribua sua fidelidade com graça, paz e abundantes bênçãos.<br />Receba nosso carinho e nossa sincera gratidão. Seguimos juntos, anunciando o amor de Cristo entre as nações.</p>
                                 <p>&nbsp;</p>
                                 <p style="color: #444;">
                                     Com gratidão,<br />
