@@ -20,7 +20,10 @@ class BirthdayEmail extends Mailable
     public function build()
     {
         return $this->subject('Feliz Aniversário!')
-                    ->view('emails.birthday');
+                    ->view('emails.birthday')
+                    ->with([
+                        'usuario' => $this->user,
+                    ]);
     }
 }
 
