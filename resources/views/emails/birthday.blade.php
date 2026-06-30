@@ -423,19 +423,7 @@
 					<table>
 						<tr>
 							<td>
-                                <p>Olá, {{ $usuario->nome }}</p>
-
-                                <p>Queremos expressar nossa profunda gratidão pela sua fidelidade em apoiar nossa missão no Oriente Médio.<br />
-                                Sua contribuição mensal é um ato de amor e de fé. Por meio dela, você participa daquilo que Deus está realizando entre povos e comunidades que, muitas vezes, vivem em contextos desafiadores e têm pouco acesso ao Evangelho e ao cuidado cristão.<br />
-                                Cada oração, cada oferta e cada gesto fortalece nosso trabalho e nos permite permanecer no campo missionário, servindo com esperança, compaixão e dedicação.</p>
-
-                                <p>Obrigado por caminhar conosco mais esse mês. Você não está apenas sustentando um projeto; você faz parte desta missão. Os frutos que Deus tem produzido também são resultado da sua parceria e generosidade.</p>
-
-                                <p>Oramos para que o Senhor continue abençoando sua vida, sua família e tudo o que Ele colocou em suas mãos. Que Ele retribua sua fidelidade com graça, paz e abundantes bênçãos.<br />
-                                Receba nosso carinho e nossa sincera gratidão. Seguimos juntos, anunciando o amor de Cristo entre as nações.</p>
-
-                                <p>Com gratidão,<br />
-                                Equipe da Família Aziz</p>
+                                <img src="https://controle.missiowave.com.br/img/img-birthday.jpg" width="700" alt="Feliz Aniversário" title="Feliz Aniversário" />
 							</td>
 						</tr>
 					</table>
